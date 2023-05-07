@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     }
     void MovePlayer()
     {
-        if (!isGameOver||gameManager.score<10)
+        if (!isGameOver&&gameManager.score<10)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");

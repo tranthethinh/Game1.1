@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI gameWinText;
     public Button restartButton;
+    public Button startButton;
 
     public GameObject[] ballPrefabs = new GameObject[3];
     private float spawnRange = 22;
@@ -21,12 +22,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         score = 0;
-        for (int i = 0; i < ballPrefabs.Length; i++)
-        {
-            Instantiate(ballPrefabs[i], RandomPos(), ballPrefabs[i].gameObject.transform.rotation);
-        }
+        UpdateScore(0);
+        //scoreText.gameObject.SetActive(false);
+
     }
     // Update is called once per frame
     void Update()
@@ -86,5 +85,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void StartGame()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        score = 0;
+        scoreText.gameObject.SetActive(true);
+        for (int i = 0; i < ballPrefabs.Length; i++)
+        {
+            Instantiate(ballPrefabs[i], RandomPos(), ballPrefabs[i].gameObject.transform.rotation);
+        }
+        startButton.gameObject.SetActive(false);
     }
 }
